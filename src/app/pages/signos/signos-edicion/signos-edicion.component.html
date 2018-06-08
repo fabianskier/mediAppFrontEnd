@@ -1,0 +1,35 @@
+<mat-card class="example-card animated fadeIn ">Ingrese los signos</mat-card>
+
+<form class="example-container animated fadeIn fast" [formGroup]="form" (ngSubmit)="operar()">
+
+  <div [hidden]="true">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="ID" required formControlName="id">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Fecha" required formControlName="fecha">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Temperatura" required formControlName="temperatura">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Pulso" required formControlName="pulso">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Ritmo" required formControlName="ritmo">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+  <button mat-raised-button color="accent" routerLink='/signos' type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button>
+</form>

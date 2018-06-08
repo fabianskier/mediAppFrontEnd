@@ -1,0 +1,27 @@
+
+Pasos migraci�n Angular 5 a 6
+----------------------------
+npm install -g @angular/cli
+npm install @angular/cli
+ng update @angular/cli
+ng update @angular/cli
+npm uninstall angular2-jwt
+npm install @auth0/angular-jwt
+ng update @angular/core
+ng update @angular/material
+npm install -g rxjs-tslint
+rxjs-5-to-6-migrate -p src/tsconfig.app.json
+npm install rxjs@6 rxjs-compat@6 --save
+
+*De momento genera un warning con la libreria de pdf pero no da problemas, quiz�s luego salga una actualizaci�n para angular 6 de la libreria
+
+Links de referencia
+------------------------
+https://stackoverflow.com/questions/48970553/want-to-upgrade-project-from-angular-v5-to-angular-v6
+https://stackoverflow.com/questions/50168357/build-failing-after-upgrading-to-angular-6
+https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md#breaking-changes
+
+Cambios significativos
+--------------------------
+El archivo angular-cli.json se renombra a angular.json tras la actualizaci�n
+La libreria de RxJs debe actualizarse a la versi�n 6 sino se tendr� problemas con los observables
