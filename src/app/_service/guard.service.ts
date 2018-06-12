@@ -30,7 +30,7 @@ export class GuardService implements CanActivate {
 
             switch (rol) {
                 case 'ROLE_ADMIN': {
-                    if (url === '/buscar' || url === '/consulta' || url === '/consulta-especial' || url === '/reporte') {
+                    if (url === '/signos' || url === '/buscar' || url === '/consulta' || url === '/consulta-especial' || url === '/reporte' || url === '/paciente') {
                         return true;
                     } else {
                         this.router.navigate(['not-403']);

@@ -1,3 +1,5 @@
+import { Paciente } from './../../../_model/paciente';
+import { PacienteService } from './../../../_service/paciente.service';
 import { SignosService } from './../../../_service/signos.service';
 import { Signos } from './../../../_model/signos';
 import { ActivatedRoute, Router, Params } from '@angular/router';
@@ -16,8 +18,9 @@ export class SignosEdicionComponent implements OnInit {
   signos: Signos;
   form: FormGroup;
   edicion: boolean = false;
+  pacientes: Paciente[] = [];
 
-  constructor(private signosService:SignosService, private route: ActivatedRoute, private router: Router) {
+  constructor(private signosService:SignosService, private route: ActivatedRoute, private router: Router, private pacienteService:PacienteService) {
     this.signos = new Signos();
 
     this.form = new FormGroup({
@@ -30,6 +33,7 @@ export class SignosEdicionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listarPacientes();
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
       this.edicion = params['id'] != null;
@@ -55,6 +59,12 @@ export class SignosEdicionComponent implements OnInit {
         });
       });
     }
+  }
+
+  listarPacientes() {
+    this.pacienteService.getlistar().subscribe(data => {
+      this.pacientes = data;
+    });
   }
 
   operar() {

@@ -1,3 +1,4 @@
+
 <mat-card class="example-card animated fadeIn ">Ingrese los signos</mat-card>
 
 <form class="example-container animated fadeIn fast" [formGroup]="form" (ngSubmit)="operar()">
@@ -7,6 +8,14 @@
       <input matInput placeholder="ID" required formControlName="id">
     </mat-form-field>
   </div>
+
+  <mat-form-field>
+    <mat-select placeholder="Paciente" [(value)]="idPacienteSeleccionado">
+      <mat-option *ngFor="let p of pacientes" [value]="p.idPaciente">
+        {{ p.nombres }} {{p.apellidos}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Fecha" required formControlName="fecha">

@@ -1,9 +1,11 @@
 <mat-toolbar>Signos</mat-toolbar>
+<div class="example-div">
+
 
 <router-outlet></router-outlet>
 
-<div class="example-div" >
-  <div class="example-header example-container mat-elevation-z9 animated fadeIn fast">
+
+  <div class="example-container mat-elevation-z9 animated fadeIn fast">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
     </mat-form-field>
@@ -15,11 +17,6 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.idSignos}} </mat-cell>
     </ng-container>
-
-    <!--<ng-container matColumnDef="idPaciente">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID Paciente </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.idPaciente}}</mat-cell>
-    </ng-container>-->
 
     <ng-container matColumnDef="fecha">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>

@@ -45,6 +45,10 @@
                 <mat-icon>insert_drive_file</mat-icon>
                 <span>Registrar E.</span>
             </button>
+            <button mat-menu-item (click)="sidenav.toggle()" routerLink="/paciente" style="cursor: pointer" *ngIf="loginService.isAdmin()">
+                <mat-icon>account_box</mat-icon>
+                <span>Paciente</span>
+            </button>
             <mat-divider></mat-divider>
             <button mat-menu-item (click)="sidenav.toggle()" routerLink="/especialidad" style="cursor: pointer" *ngIf="!loginService.isAdmin()">
                 <mat-icon>star_rate</mat-icon>
