@@ -1,3 +1,6 @@
+import { startWith, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
 import { Paciente } from './../../../_model/paciente';
 import { PacienteService } from './../../../_service/paciente.service';
 import { SignosService } from './../../../_service/signos.service';
@@ -5,6 +8,7 @@ import { Signos } from './../../../_model/signos';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { PacienteEdicionComponent } from '../../paciente/paciente-edicion/paciente-edicion.component';
 
 
 @Component({
@@ -14,23 +18,31 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class SignosEdicionComponent implements OnInit {
 
+  myControl: FormControl = new FormControl();
+
   id: number;
   signos: Signos;
   form: FormGroup;
   edicion: boolean = false;
   pacientes: Paciente[] = [];
+  paciente: Paciente;
 
-  constructor(private signosService:SignosService, private route: ActivatedRoute, private router: Router, private pacienteService:PacienteService) {
+  filteredOptions: Observable<any[]>;
+
+  constructor(private signosService:SignosService, private route: ActivatedRoute, private router: Router, private pacienteService:PacienteService, public dialog: MatDialog) {
     this.signos = new Signos();
 
     this.form = new FormGroup({
       'id': new FormControl(0),
+      'paciente': new FormControl(new Paciente()),
       'fecha': new FormControl(new Date()),
       'temperatura': new FormControl(''),
       'pulso': new FormControl(''),
       'ritmo': new FormControl('')
     });
   }
+
+  
 
   ngOnInit() {
     this.listarPacientes();
@@ -39,19 +51,40 @@ export class SignosEdicionComponent implements OnInit {
       this.edicion = params['id'] != null;
       this.initForm();
     });
+
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(null),
+        map(val => this.filter(val))
+      );
   }
+
+  filter(val: any) {
+    if (val != null && val.idPaciente > 0) {
+      return this.pacientes.filter(option =>
+        option.nombres.toLowerCase().includes(val.nombres.toLowerCase()) || option.apellidos.toLowerCase().includes(val.apellidos.toLowerCase()) || option.dni.includes(val.dni));
+    } else {      
+      return this.pacientes.filter(option =>
+        option.nombres.toLowerCase().includes(val.toLowerCase()) || option.apellidos.toLowerCase().includes(val.toLowerCase()) || option.dni.includes(val));
+    }
+  }
+  
 
   private initForm() {
     if (this.edicion) {
       this.signosService.getSignosPorId(this.id).subscribe(data => {
         let id = data.idSignos;
+        let paciente = data.paciente;
         let fecha = data.fecha;
         let temperatura = data.temperatura;
         let pulso = data.pulso;
         let ritmo = data.ritmo;
 
+        console.log(paciente);
+
         this.form = new FormGroup({
           'id': new FormControl(id),
+          'paciente': new FormControl(paciente),
           'fecha': new FormControl(fecha),
           'temperatura': new FormControl(temperatura),
           'pulso': new FormControl(pulso),
@@ -66,6 +99,7 @@ export class SignosEdicionComponent implements OnInit {
       this.pacientes = data;
     });
   }
+  
 
   operar() {
     this.signos.idSignos = this.form.value['id'];
@@ -104,4 +138,12 @@ export class SignosEdicionComponent implements OnInit {
 
     this.router.navigate(['signos'])
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(PacienteEdicionComponent, {
+      width: 'auto',
+      height: 'auto'
+    });}
+
+    
 }

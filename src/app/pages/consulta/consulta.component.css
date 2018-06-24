@@ -1,6 +1,10 @@
 .example-container{
     display: flex;
     flex-direction: column;
+    min-width: 300px;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px 10px;
 }
 .example-container>*{
     width: 100%;
@@ -8,4 +12,14 @@
 
 .example-spacer {
     flex: 1 1 auto;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
   }

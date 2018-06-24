@@ -1,6 +1,7 @@
 <mat-toolbar>Registro de Consulta</mat-toolbar>
 
-<div class="example-container">
+<div class="example-container mat-elevation-z8">
+  
   <mat-form-field>
     <mat-select placeholder="Paciente" [(value)]="idPacienteSeleccionado">
       <mat-option *ngFor="let p of pacientes" [value]="p.idPaciente">
@@ -43,47 +44,47 @@
   <mat-toolbar *ngIf="detalleConsulta.length===0">No hay diagnósticos agregados</mat-toolbar>
 
   <mat-list role="list" *ngFor="let d of detalleConsulta; let i=index">
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{d.diagnostico}}
-            </mat-panel-title>
-            <mat-panel-description>
-              Ver Tratamiento
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-  
-          <mat-form-field>
-            <textarea matInput placeholder="Tratamiento" value="{{d.tratamiento}}"></textarea>
-          </mat-form-field>
-          <br>
-          <button mat-raised-button color="warn" (click)="removerDiagnostico(i)">Remover</button>
-  
-        </mat-expansion-panel>
-  
-      </mat-accordion>
-  
-    </mat-list>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{d.diagnostico}}
+          </mat-panel-title>
+          <mat-panel-description>
+            Ver Tratamiento
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
-    <mat-form-field>
-        <mat-select placeholder="Examen" [(value)]="idExamenSeleccionado">
-          <mat-option *ngFor="let ex of examenes" [value]="ex.idExamen">
-            {{ ex.nombre }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    
-      <button mat-raised-button color="primary" (click)="agregarExamen()">Agregar Examen</button>
-    
-      <mat-toolbar *ngIf="examenesSeleccionados.length===0">No hay exámenes agregados</mat-toolbar>  
-    
-      <mat-toolbar *ngFor="let d of examenesSeleccionados; let i=index">
-        {{d.nombre}}
-        <span class="example-spacer"></span>
-        <button mat-raised-button color="warn" (click)="removerExamen(i)">Remover</button>
-      </mat-toolbar>
-    
-      <button mat-raised-button color="primary" (click)="aceptar()" [disabled]="estadoBotonRegistrar()">Registrar</button>
+        <mat-form-field>
+          <textarea matInput placeholder="Tratamiento" value="{{d.tratamiento}}"></textarea>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="warn" (click)="removerDiagnostico(i)">Remover</button>
+
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </mat-list>
+
+  <mat-form-field>
+    <mat-select placeholder="Examen" [(value)]="idExamenSeleccionado">
+      <mat-option *ngFor="let ex of examenes" [value]="ex.idExamen">
+        {{ ex.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="agregarExamen()">Agregar Examen</button>
+
+  <mat-toolbar *ngIf="examenesSeleccionados.length===0">No hay exámenes agregados</mat-toolbar>
+
+  <mat-toolbar *ngFor="let d of examenesSeleccionados; let i=index">
+    {{d.nombre}}
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="warn" (click)="removerExamen(i)">Remover</button>
+  </mat-toolbar>
+
+  <button mat-raised-button color="primary" (click)="aceptar()" [disabled]="estadoBotonRegistrar()">Registrar</button>
 
 </div>

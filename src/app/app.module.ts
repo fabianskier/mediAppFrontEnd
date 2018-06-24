@@ -38,6 +38,7 @@ import { RecuperarComponent } from './login/recuperar/recuperar.component';
 import { TokenComponent } from './login/recuperar/token/token.component';
 import { SignosComponent } from './pages/signos/signos.component';
 import { SignosEdicionComponent } from './pages/signos/signos-edicion/signos-edicion.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -64,7 +65,8 @@ export function tokenGetter() {
     RecuperarComponent,
     TokenComponent,
     SignosComponent,
-    SignosEdicionComponent
+    SignosEdicionComponent,
+    PerfilComponent
   ],
   entryComponents: [DialogoComponent, DialogoDetalleComponent],
   imports: [

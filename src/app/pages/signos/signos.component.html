@@ -1,17 +1,16 @@
 <mat-toolbar>Signos</mat-toolbar>
-<div class="example-div">
-
 
 <router-outlet></router-outlet>
 
+<div class="example-container mat-elevation-z8 mat-elevation-z8 animated fadeIn fast" *ngIf="route.children.length === 0"> 
 
-  <div class="example-container mat-elevation-z9 animated fadeIn fast">
+  <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
     </mat-form-field>
   </div>
 
-  <mat-table [dataSource]="dataSource" matSort>
+  <mat-table [dataSource]="dataSource"  matSort>
 
     <ng-container matColumnDef="idSignos">
       <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
@@ -52,10 +51,13 @@
     </mat-row>
   </mat-table>
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" [length]="cantidad" (page)="mostrarMas($event)"></mat-paginator>
+
+  
+
 </div>
 
 <br>
 
-<button mat-fab color="accent" style="float: right" routerLink='/signos/nuevo'>
+<button mat-fab matTooltip="Nuevo" color="accent" style="float: right ; margin-right: 9%" routerLink='/signos/nuevo'>
   <mat-icon>add</mat-icon>
 </button>

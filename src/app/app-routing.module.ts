@@ -1,3 +1,4 @@
+import { PerfilComponent } from './pages/perfil/perfil.component';
 import { SignosEdicionComponent } from './pages/signos/signos-edicion/signos-edicion.component';
 import { SignosComponent } from './pages/signos/signos.component';
 import { TokenComponent } from './login/recuperar/token/token.component';
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
           { path: 'edicion/:id', component: SignosEdicionComponent }
       ], canActivate: [GuardService]
     },
-    //{ path: 'perfil', component: PerfilComponent, canActivate: [GuardService] },
+    { path: 'perfil', component: PerfilComponent, canActivate: [GuardService] },
     { path: 'reporte', component: ReporteComponent, canActivate: [GuardService] },
     { path: 'login', component: LoginComponent },
     {

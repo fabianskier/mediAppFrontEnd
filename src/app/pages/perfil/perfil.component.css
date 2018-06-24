@@ -1,0 +1,13 @@
+
+.example-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    width: 50%;
+    margin: 20px auto;
+  }
+  
+  .example-header-image {
+    background-image: url('https://cdn4.iconfinder.com/data/icons/user-avatar-flat-icons/512/User_Avatar-33-512.png');
+    background-size: cover;
+  }

@@ -1,11 +1,22 @@
-.example-container{
+.example-container {
     display: flex;
     flex-direction: column;
-}
-.example-container>*{
+    min-width: 300px;
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
     width: 100%;
-}
-
-.example-spacer {
-    flex: 1 1 auto;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
   }

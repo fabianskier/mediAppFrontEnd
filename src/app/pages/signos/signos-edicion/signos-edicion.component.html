@@ -1,7 +1,6 @@
+<form class="example-container animated fadeIn fast mat-elevation-z8" [formGroup]="form" (ngSubmit)="operar()">
 
-<mat-card class="example-card animated fadeIn ">Ingrese los signos</mat-card>
-
-<form class="example-container animated fadeIn fast" [formGroup]="form" (ngSubmit)="operar()">
+  <mat-toolbar>Ingrese los signos</mat-toolbar>
 
   <div [hidden]="true">
     <mat-form-field class="example-full-width">
@@ -9,13 +8,31 @@
     </mat-form-field>
   </div>
 
-  <mat-form-field>
-    <mat-select placeholder="Paciente" [(value)]="idPacienteSeleccionado">
-      <mat-option *ngFor="let p of pacientes" [value]="p.idPaciente">
-        {{ p.nombres }} {{p.apellidos}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <mat-grid-list cols="2" rowHeight="10:1">
+    <mat-grid-tile>
+      <mat-form-field>
+          <input type="text" placeholder="Paciente" matInput [matAutocomplete]="autoPaciente" [formControl]="myControl" >
+          <mat-autocomplete #autoPaciente="matAutocomplete" [displayWith]="displayFn" (optionSelected)="seleccionarPaciente($event)">
+            <mat-option *ngFor="let p of filteredOptions | async" [value]="p">
+              {{ p.nombres }} {{p.apellidos}}
+            </mat-option>
+          </mat-autocomplete>
+
+        <!--<mat-select placeholder="Paciente" [(value)]="idPacienteSeleccionado">
+          <mat-option *ngFor="let p of pacientes" [value]="p.idPaciente">
+            {{ p.nombres }} {{p.apellidos}}
+          </mat-option>
+        </mat-select>-->
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-raised-button color="primary" (click)="openDialog()">Nuevo</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
+
+
 
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Fecha" required formControlName="fecha">
@@ -33,12 +50,14 @@
     <input matInput placeholder="Ritmo" required formControlName="ritmo">
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">
-    <mat-icon>done</mat-icon>
-    <span>Aceptar</span>
-  </button>
-  <button mat-raised-button color="accent" routerLink='/signos' type="button">
-    <mat-icon>close</mat-icon>
-    <span>Cancelar</span>
-  </button>
+  <div class="button-row example-button-row">
+    <button mat-raised-button color="primary" type="submit">
+      <mat-icon>done</mat-icon>
+      <span>Aceptar</span>
+    </button>
+    <button mat-raised-button color="accent" routerLink='/signos' type="button">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+    </button>
+  </div>
 </form>

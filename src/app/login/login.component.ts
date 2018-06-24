@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
         let tk = JSON.parse(sessionStorage.getItem(TOKEN_NAME));
         const decodedToken = decode(tk.access_token);
-        //console.log(decodedToken);
+        console.log(decodedToken);
         let rol = decodedToken.authorities[0];
 
         if (rol === 'ROLE_ADMIN') {

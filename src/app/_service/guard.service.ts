@@ -30,7 +30,7 @@ export class GuardService implements CanActivate {
 
             switch (rol) {
                 case 'ROLE_ADMIN': {
-                    if (url === '/signos' || url === '/buscar' || url === '/consulta' || url === '/consulta-especial' || url === '/reporte' || url === '/paciente') {
+                    if (url === '/signos' || url === '/buscar' || url === '/consulta' || url === '/consulta-especial' || url === '/reporte' || url === '/paciente' || url === '/perfil') {
                         return true;
                     } else {
                         this.router.navigate(['not-403']);
@@ -38,7 +38,7 @@ export class GuardService implements CanActivate {
                     }
                 }
                 case 'ROLE_USER': {
-                    if (url === '/especialidad' || url === '/medico' || url === '/paciente' || url === '/examen') {
+                    if (url === '/especialidad' || url === '/medico' || url === '/paciente' || url === '/examen' || url === '/perfil') {
                         return true;
                     } else {
                         this.router.navigate(['not-403']);

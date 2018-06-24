@@ -27,7 +27,7 @@
 
     <mat-sidenav-container class="example-sidenav-container" >
         <mat-sidenav #sidenav mode="side" style="width: 200px" >
-            <img src="assets/mitocode.png" width="64">
+            <p style="padding-left: 8px; padding-top: 10px"><img src="assets/pill.png" width="64"></p>
             <button mat-menu-item (click)="sidenav.toggle()" routerLink="/signos" style="cursor: pointer" *ngIf="loginService.isAdmin()">
                 <mat-icon>assignment</mat-icon>
                 <span>Signos</span>
